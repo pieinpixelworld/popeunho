@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NopeNope</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #cat-image {
+      width: 300px;
+      height: 300px;
+      background-image: url('original_image.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-top: 30px;
+      cursor: pointer;
+    }
+
+    #click-count {
+      font-size: 50px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    h1, #click-count, #cat-image {
+      order: 2;
+    }
+
+    h1 {
+      order: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1>놉! 놉!</h1>
+  <p id="click-count">0</p>
+  <div id="cat-image"></div>
+
+  <audio id="audio" src="click_sound.mp3"></audio>
+
+  <script>
+    var catImage = document.getElementById('cat-image');
+    var clickCount = 0;
+    var audio = document.getElementById('audio');
+
+    catImage.addEventListener('mousedown', function() {
+      catImage.style.backgroundImage = "url('clicked_image.jpg')";
+      audio.currentTime = 0;
+      audio.play();
+    });
+
+    catImage.addEventListener('mouseup', function() {
+      catImage.style.backgroundImage = "url('original_image.jpg')";
+      clickCount++;
+      document.getElementById('click-count').textContent = clickCount;
+    });
+  </script>
+</body>
+</html>
